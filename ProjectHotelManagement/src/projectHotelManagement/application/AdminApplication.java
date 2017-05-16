@@ -254,7 +254,7 @@ public class AdminApplication {
 		if(!HotelStatusValidation.isUserFirstNameExists(firstName))
 			System.out.println("User with first name " + firstName + " does not exist.");
 		else
-			System.out.println("Korisnicki podaci:\n" + userDAOImpl.toString(firstName,1));
+			System.out.println("Users data:\n" + userDAOImpl.getCustomerByName(firstName).toString());
 	}
 
 	/**
