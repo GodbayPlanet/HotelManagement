@@ -13,6 +13,7 @@ import projectHotelManagement.data.User;
 import projectHotelManagement.validations.HotelStatusValidation;
 
 public class AdminApplication {
+	
 	public static Connection connection = DBConnection.getConnectionToDB();
 	public static UserDAOImpl userDAOImpl = new UserDAOImpl(connection);
 	public static HotelStatusDAOImpl hotelStatusDAOImpl = new HotelStatusDAOImpl(connection);
@@ -25,7 +26,6 @@ public class AdminApplication {
 	 * @param input
 	 * @return
 	 */
-
 	public static User updateCustomer(Scanner input) {
 		int personalIdNumber = 0;
 		String userName = "";
@@ -37,7 +37,6 @@ public class AdminApplication {
 		int isLogged = 0;
 		boolean on = true;
 		while (on) {
-
 
 			try {
 
@@ -58,8 +57,7 @@ public class AdminApplication {
 							if (HotelStatusValidation.isUserNameExists(userName)) {
 								System.out.println("Naziv korisnickog racuna: " + userName
 										+ " je vec zauzet, molimo upisite neki drugi: ");
-							} 
-							else {
+							} else {
 								uN = false;
 							}
 						}
@@ -75,8 +73,7 @@ public class AdminApplication {
 						System.out.println("Password korisnickog racuna: " + userName + " je: " + password + ". ");
 						on = false;
 						id = false;
-					} 
-					else {
+					} else {
 						id = true;
 					}
 				}
@@ -87,10 +84,10 @@ public class AdminApplication {
 			}
 		}
 
-		User customer = new User(personalIdNumber, userName, firstName, lastName, password, gender, age,
-				isLogged);
+		User customer = new User(personalIdNumber, userName, firstName, lastName, password, gender, age, isLogged);
 		return customer;
 	}
+
 	/**
 	 * Dodavanje korisnika u bazu s validacijom da li su ID ili user name vec
 	 * zauzeti, takodje automatski se generise pasvord za korisnicki racun
@@ -100,7 +97,7 @@ public class AdminApplication {
 	 * @param input
 	 * @return
 	 */
-	public static User addCustomer(Scanner input){
+	public static User addCustomer(Scanner input) {
 		int personalIdNumber = 0;
 		String userName = "";
 		String firstName = "";
@@ -120,8 +117,7 @@ public class AdminApplication {
 					if (HotelStatusValidation.isUserIdExists(personalIdNumber)) {
 						System.out.println(
 								"Korisnicki ID: " + personalIdNumber + " je vec zauzet, molimo upisite neki drugi: ");
-					} 
-					else {
+					} else {
 						id = false;
 					}
 				}
@@ -133,8 +129,7 @@ public class AdminApplication {
 					if (HotelStatusValidation.isUserNameExists(userName)) {
 						System.out.println("Naziv korisnickog racuna: " + userName
 								+ " je vec zauzet, molimo upisite neki drugi: ");
-					}
-					else {
+					} else {
 						uN = false;
 					}
 				}
@@ -151,13 +146,12 @@ public class AdminApplication {
 
 				System.out.println("Unesite ID sobe koju korisnik zeli: ");
 				boolean roomFree = true;
-				while(roomFree) {
+				while (roomFree) {
 					int roomId = input.nextInt();
 
-					if(!HotelStatusValidation.isRoomFreeFromHotelStatus(roomId)) {
+					if (!HotelStatusValidation.isRoomFreeFromHotelStatus(roomId)) {
 						System.out.println("Soba sa ID " + roomId + " je vec zauzeta. Unesite ID druge sobe: ");
-					}
-					else {
+					} else {
 						hotelStatusDAOImpl.bookRoom(personalIdNumber, roomId);
 						roomFree = false;
 					}
@@ -169,14 +163,14 @@ public class AdminApplication {
 			}
 		}
 
-		User customer = new User(personalIdNumber, userName, firstName, lastName, password, gender, age,
-				isLogged);
+		User customer = new User(personalIdNumber, userName, firstName, lastName, password, gender, age, isLogged);
 		return customer;
 	}
 
 	/**
 	 * Mijenjanje statusa korisnika sa online na offline, moguce je uraditi za
 	 * sve korisnike kao i za pojedinacnog korisnika koristeci njegov ID
+	 * 
 	 * @author amer
 	 * @param input
 	 */
@@ -217,8 +211,7 @@ public class AdminApplication {
 				}
 
 				running = false;
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				System.out.println(Messages.EXCEPTION);
 				input.nextLine();
 			}
@@ -227,20 +220,22 @@ public class AdminApplication {
 
 	/**
 	 * Prints all cutomers that are online.
+	 * 
 	 * @author Nemanja
 	 * @throws SQLException
 	 */
 	public static void printAllLoggedUsers() throws SQLException {
 		Set<User> customers = userDAOImpl.getAllCustomers();
 
-		for(User customer : customers) {
-			if(customer.getIsLogged() == 1)
+		for (User customer : customers) {
+			if (customer.getIsLogged() == 1)
 				System.out.println("Customer " + customer.getUserName() + " is online.");
 		}
 	}
 
 	/**
 	 * Pretraga korisnika po imenu
+	 * 
 	 * @author amer
 	 * @param input
 	 * @throws SQLException
@@ -251,7 +246,7 @@ public class AdminApplication {
 		System.out.println("Upisite ime korisnika: ");
 		String firstName = input.nextLine();
 
-		if(!HotelStatusValidation.isUserFirstNameExists(firstName))
+		if (!HotelStatusValidation.isUserFirstNameExists(firstName))
 			System.out.println("User with first name " + firstName + " does not exist.");
 		else
 			System.out.println("Users data:\n" + userDAOImpl.getCustomerByName(firstName).toString());
@@ -259,6 +254,7 @@ public class AdminApplication {
 
 	/**
 	 * Pretraga korisnika po ID
+	 * 
 	 * @author amer
 	 * @param input
 	 * @throws SQLException
@@ -269,7 +265,7 @@ public class AdminApplication {
 		int id = input.nextInt();
 		userDAOImpl.getCustomerByID(id);
 
-		if(!HotelStatusValidation.isUserIdExists(id))
+		if (!HotelStatusValidation.isUserIdExists(id))
 			System.out.println("User with id " + id + " does not exist.");
 		else
 			System.out.println("Korisnicki podaci:\n" + userDAOImpl.toString(id));
@@ -277,6 +273,7 @@ public class AdminApplication {
 
 	/**
 	 * Pretraga korisnika po imenu korisnickog racuna
+	 * 
 	 * @author amer
 	 * @param input
 	 * @throws SQLException
@@ -289,15 +286,16 @@ public class AdminApplication {
 		System.out.println("Upisite naziv korisnickog racuna: ");
 		String userName = input.nextLine();
 
-		if(!HotelStatusValidation.isUserNameExists(userName))
+		if (!HotelStatusValidation.isUserNameExists(userName))
 			System.out.println("User " + userName + " does not exist.");
 		else
-			System.out.println("Korisnicki podaci:\n" + customerDAOImpl.toString(userName,2));
+			System.out.println("Korisnicki podaci:\n" + customerDAOImpl.toString(userName, 2));
 	}
 
 	/**
 	 * Search engine za pretragu korisnika od strane administratora po
 	 * razlicitim parametrima
+	 * 
 	 * @author amer
 	 * @param input
 	 * @throws SQLException
@@ -334,8 +332,7 @@ public class AdminApplication {
 
 				}
 				running = false;
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				System.out.println(Messages.EXCEPTION);
 				input.nextLine();
 			}
@@ -344,6 +341,7 @@ public class AdminApplication {
 
 	/**
 	 * Prikaz svih korisnika
+	 * 
 	 * @author amer
 	 * @throws SQLException
 	 */
@@ -357,6 +355,7 @@ public class AdminApplication {
 
 	/**
 	 * Brisanje korisnika upisom ID-a userId
+	 * 
 	 * @author amer
 	 * @param input
 	 */
@@ -378,6 +377,7 @@ public class AdminApplication {
 
 	/**
 	 * Ispis racuna za naplatiti.
+	 * 
 	 * @param input
 	 */
 	public static void bill(Scanner input) {
@@ -393,16 +393,14 @@ public class AdminApplication {
 						on = false;
 						hotelStatusDAOImpl.printBill(id);
 
-					} 
-					else {
+					} else {
 						System.out.println("Korisnik sa unesenim ID se ne nalazi u bazi, pokusajte ponovo.");
 						input.nextLine();
 					}
 
 				}
 				running = false;
-			} 
-			catch (Exception e) {
+			} catch (Exception e) {
 				System.out.println(Messages.EXCEPTION);
 				input.nextLine();
 			}
@@ -412,6 +410,7 @@ public class AdminApplication {
 
 	/**
 	 * Funkcije administratorskog menija
+	 * 
 	 * @author amer
 	 * @param input
 	 * @throws SQLException
