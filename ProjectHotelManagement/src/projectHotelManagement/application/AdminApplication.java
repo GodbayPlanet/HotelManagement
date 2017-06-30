@@ -21,9 +21,9 @@ public class AdminApplication {
 	static final int ONLINE = 1;
 
 	/**
-	 * Updating specific user 
-	 * @author Nemanja
-	 * @param input
+	 * Updating user 
+	 * @author Nemanja 
+	 * @param input 
 	 * @return
 	 */
 	public static User updateCustomer(Scanner input) {
