@@ -21,7 +21,7 @@ public class AdminApplication {
 	static final int ONLINE = 1;
 
 	/**
-	 * Updating user 
+	 * Updating specific user 
 	 * @author Nemanja 
 	 * @param input 
 	 * @return
