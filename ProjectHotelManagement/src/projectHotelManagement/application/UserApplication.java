@@ -13,12 +13,9 @@ import projectHotelManagement.validations.HotelStatusValidation;
 import projectHotelManagement.data.Messages;
 
 /**
- * Korisnicka aplikacija
- * 
- * @author amer
+ * @author Nemanja
  *
  */
-
 public class UserApplication {
 
 	public static Connection connection = DBConnection.getConnectionToDB();
@@ -26,8 +23,8 @@ public class UserApplication {
 	public static HotelStatusDAOImpl hotelStatusDAOImpl = new HotelStatusDAOImpl(connection);
 
 	/**
-	 * Narucivanje novih servisa od strane korisnika
-	 * @author amer
+	 * Method for ordering new services.
+	 * @author Nemanja
 	 * @param input
 	 * @throws SQLException
 	 */
@@ -57,6 +54,7 @@ public class UserApplication {
 
 	/**
 	 * Returns array list with additional services that user choosed.
+	 * @author Nemanja
 	 * @param arrayOfServices
 	 * @return
 	 */
@@ -82,17 +80,15 @@ public class UserApplication {
 	}
 
 	/**
-	 * Promjena sobe
-	 * @author amer
+	 * Changing the room in witch customer staying.
+	 * @author Nemanja
 	 * @param userName
 	 * @throws SQLException
 	 */
 	public static void roomChange(Scanner input, String userName) throws SQLException {
-
 		int roomId = 0;
 		boolean on = true;
 		while (on) {
-
 			try {
 				System.out.print("Upisite ID sobe koju zelite: ");
 				roomId = input.nextInt();
@@ -103,19 +99,16 @@ public class UserApplication {
 			}
 		}
 		User user = customerDAOImpl.getCustomerByUserName(userName);
-		
 		if(HotelStatusValidation.isFreeToBook(user.getPersonalIdNumber()))
 			hotelStatusDAOImpl.changeTheRoom(getCustomerID(userName), roomId);
 		else
 			System.out.println("Zao nam je ne mozete rezervisati vise soba za isti datum. Dodjite sutra"
 					+ " za novu rezervaciju.");
-
 	}
 
 	/**
-	 * Metoda vraca ID korisnika kada upise svoj userName radi lakse primjene u
-	 * drugim metodama
-	 * @author amer
+	 * Helper method for getting customer id.
+	 * @author Nemanja
 	 * @param userName
 	 * @return
 	 * @throws SQLException
@@ -128,8 +121,7 @@ public class UserApplication {
 	}
 
 	/**
-	 * Funkcije korisnickog menija
-	 * @author amer
+	 * @author Nemanja
 	 * @param input
 	 * @param userName
 	 * @throws SQLException
@@ -172,9 +164,6 @@ public class UserApplication {
 				System.out.println(Messages.EXCEPTION);
 				e.printStackTrace();
 			}
-
 		}
-
 	}
-
 }

@@ -16,9 +16,8 @@ public class Application {
 	public static UserDAOImpl userDAOImpl = new UserDAOImpl(connection);
 	
 	/**
-	 * Prijava pri pokretanju aplikacije i provjera validnosti unesenih podataka
-	 * 
-	 * @author amer
+	 * Logging into application. 
+	 * @author Nemanja
 	 */
 	public static void runApp() {
 
@@ -67,7 +66,6 @@ public class Application {
 				System.out.println(Messages.EXCEPTION);
 				input.nextLine();
 			}
-
 		}
 	}
 }
