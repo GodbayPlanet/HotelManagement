@@ -8,6 +8,7 @@ public class DBConnection {
 
 	/**
 	 * Returns connection to data base.
+	 * @author Nemanja
 	 * @return
 	 */
 	public static Connection getConnectionToDB() {
@@ -15,11 +16,9 @@ public class DBConnection {
 
 		try {
 			Connection myConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotelmanagamenttest",
-					//Connection myConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/HotelManagamentTest",
 					properties);
 			return myConnection;
-		}
-		catch(Exception ex) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
 			return null;
 		}
@@ -27,13 +26,13 @@ public class DBConnection {
 
 	/**
 	 * Returns properties defined for data base.
+	 * @author Nemanja
 	 * @return
 	 */
 	public static Properties getProperties() {
 		Properties properties = new Properties();
 		properties.setProperty("user", "root");
 		properties.setProperty("password", "password1");
-		//properties.setProperty("password", "ameramer");
 		properties.setProperty("useSSL", "false");
 
 		return properties;
