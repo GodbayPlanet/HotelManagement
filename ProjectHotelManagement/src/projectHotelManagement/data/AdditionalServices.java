@@ -1,7 +1,7 @@
 package projectHotelManagement.data;
 
 /**
- * Class that describe Additional services
+ * Class that describe Additional services.
  * @author Nemanja
  *
  */
