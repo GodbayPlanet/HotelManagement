@@ -3,7 +3,6 @@ package projectHotelManagement.data;
 /**
  * Class that describe User.
  * @author Nemanja
- *
  */
 public class User {
 

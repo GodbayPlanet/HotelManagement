@@ -1,9 +1,7 @@
 package projectHotelManagement.data;
 
 /**
- * 
  * @author Nemanja
- *
  */
 public class Room {
 	

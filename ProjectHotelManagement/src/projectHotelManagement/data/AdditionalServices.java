@@ -1,5 +1,10 @@
 package projectHotelManagement.data;
 
+/**
+ * Class that describe Additional services
+ * @author Nemanja
+ *
+ */
 public class AdditionalServices {
 
 	private int servicesId;

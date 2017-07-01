@@ -1,12 +1,9 @@
 package projectHotelManagement.data;
 
 /**
- * Ispisi poruka
- * 
- * @author amer
+ * @author Nemanja
  *
  */
-
 public class Messages {
 
 	public static void displayWelcomeMessage() {
