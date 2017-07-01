@@ -259,17 +259,11 @@ public class UserDAOImpl implements UserDAO {
 		stmt.close();
 	}
 
-	public String toString(String name, int option) throws SQLException {
-		if(option ==1)
-			return getCustomerByName(name).toString();
-		else 
-			return getCustomerByUserName(name).toString();
-	}
-
 	public String toString(int id){
 		return getCustomerByID(id).toString();
 	}
 
-
-
+	public String toString(String userName) throws SQLException {
+		return getCustomerByUserName(userName).toString();
+	}
 }
