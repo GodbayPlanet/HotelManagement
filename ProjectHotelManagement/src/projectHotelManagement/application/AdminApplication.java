@@ -217,9 +217,10 @@ public class AdminApplication {
 	 */
 	public static void printAllLoggedUsers() throws SQLException {
 		Set<User> customers = userDAOImpl.getAllCustomers();
-		for (User customer : customers)
-			if (customer.getIsLogged() == 1)
+		customers.forEach(customer -> {
+			if(customer.getIsLogged() == ONLINE)
 				System.out.println("Korisnik " + customer.getUserName() + " je online.");
+		});
 	}
 
 	/**
@@ -329,9 +330,7 @@ public class AdminApplication {
 	public static void displayAllCustomers() throws SQLException {
 		Set<User> customers = userDAOImpl.getAllCustomers();
 		System.out.println("Spisak svih korisnika:\n");
-		for (User customer : customers) {
-			System.out.println(customer.toString());
-		}
+		customers.forEach(customer -> System.out.println(customer.toString()));
 	}
 
 	public static void deleteCustomer(Scanner input) {
