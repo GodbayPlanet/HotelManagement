@@ -13,7 +13,7 @@ import projectHotelManagement.data.User;
 import projectHotelManagement.validations.HotelStatusValidation;
 
 public class AdminApplication {
-	
+
 	public static Connection connection = DBConnection.getConnectionToDB();
 	public static UserDAOImpl userDAOImpl = new UserDAOImpl(connection);
 	public static HotelStatusDAOImpl hotelStatusDAOImpl = new HotelStatusDAOImpl(connection);
@@ -21,9 +21,9 @@ public class AdminApplication {
 	static final int ONLINE = 1;
 
 	/**
-	 * Updating specific user 
-	 * @author Nemanja 
-	 * @param input 
+	 * Updating specific user
+	 * @author Nemanja
+	 * @param input
 	 * @return
 	 */
 	public static User updateCustomer(Scanner input) {
@@ -37,9 +37,7 @@ public class AdminApplication {
 		int isLogged = 0;
 		boolean on = true;
 		while (on) {
-
 			try {
-
 				System.out.print("Upisite ID korisnika kojeg zelite modifikovati: ");
 				personalIdNumber = input.nextInt();
 				boolean id = true;
@@ -89,11 +87,9 @@ public class AdminApplication {
 	}
 
 	/**
-	 * Dodavanje korisnika u bazu s validacijom da li su ID ili user name vec
-	 * zauzeti, takodje automatski se generise pasvord za korisnicki racun
-	 * ukoliko su svi podaci uneseni prije toga validni
-	 * 
-	 * @author amer
+	 * Adding user in database with validation of ID and user name, password is
+	 * generated automaticly if all data is input correctly.
+	 * @author Nemanja
 	 * @param input
 	 * @return
 	 */
@@ -162,19 +158,16 @@ public class AdminApplication {
 				input.nextLine();
 			}
 		}
-
 		User customer = new User(personalIdNumber, userName, firstName, lastName, password, gender, age, isLogged);
 		return customer;
 	}
 
 	/**
-	 * Mijenjanje statusa korisnika sa online na offline, moguce je uraditi za
-	 * sve korisnike kao i za pojedinacnog korisnika koristeci njegov ID
-	 * 
-	 * @author amer
+	 * Changing user status from online to offline, it's possible to change user
+	 * status to all customers.
+	 * @author Nemanja
 	 * @param input
 	 */
-
 	public static void changeCustomerStatus(Scanner input) {
 
 		int option = 0;
@@ -209,7 +202,6 @@ public class AdminApplication {
 						break;
 					}
 				}
-
 				running = false;
 			} catch (Exception e) {
 				System.out.println(Messages.EXCEPTION);
@@ -220,42 +212,36 @@ public class AdminApplication {
 
 	/**
 	 * Prints all cutomers that are online.
-	 * 
 	 * @author Nemanja
 	 * @throws SQLException
 	 */
 	public static void printAllLoggedUsers() throws SQLException {
 		Set<User> customers = userDAOImpl.getAllCustomers();
-
-		for (User customer : customers) {
+		for (User customer : customers)
 			if (customer.getIsLogged() == 1)
-				System.out.println("Customer " + customer.getUserName() + " is online.");
-		}
+				System.out.println("Korisnik " + customer.getUserName() + " je online.");
 	}
 
 	/**
-	 * Pretraga korisnika po imenu
-	 * 
-	 * @author amer
+	 * Method for searching customer by customer name.
+	 * @author Nemanja
 	 * @param input
 	 * @throws SQLException
 	 */
-
 	public static void searchCustomerByName(Scanner input) throws SQLException {
 		input.nextLine();
 		System.out.println("Upisite ime korisnika: ");
 		String firstName = input.nextLine();
 
 		if (!HotelStatusValidation.isUserFirstNameExists(firstName))
-			System.out.println("User with first name " + firstName + " does not exist.");
+			System.out.println("Korisnik sa imenom " + firstName + " ne postoji.");
 		else
 			System.out.println("Users data:\n" + userDAOImpl.getCustomerByName(firstName).toString());
 	}
 
 	/**
-	 * Pretraga korisnika po ID
-	 * 
-	 * @author amer
+	 * Method for searching customer by customer id.
+	 * @author Nemanja
 	 * @param input
 	 * @throws SQLException
 	 */
@@ -266,15 +252,14 @@ public class AdminApplication {
 		userDAOImpl.getCustomerByID(id);
 
 		if (!HotelStatusValidation.isUserIdExists(id))
-			System.out.println("User with id " + id + " does not exist.");
+			System.out.println("Korisnik sa id " + id + " ne postoji.");
 		else
 			System.out.println("Korisnicki podaci:\n" + userDAOImpl.toString(id));
 	}
 
 	/**
-	 * Pretraga korisnika po imenu korisnickog racuna
-	 * 
-	 * @author amer
+	 * Method for searching customer by customer user name.
+	 * @author Nemanja
 	 * @param input
 	 * @throws SQLException
 	 */
@@ -287,20 +272,17 @@ public class AdminApplication {
 		String userName = input.nextLine();
 
 		if (!HotelStatusValidation.isUserNameExists(userName))
-			System.out.println("User " + userName + " does not exist.");
+			System.out.println("Korisnik " + userName + " ne postoji..");
 		else
 			System.out.println("Korisnicki podaci:\n" + customerDAOImpl.toString(userName, 2));
 	}
 
 	/**
-	 * Search engine za pretragu korisnika od strane administratora po
-	 * razlicitim parametrima
-	 * 
-	 * @author amer
+	 * Method for searchin customers.
+	 * @author Nemanja
 	 * @param input
 	 * @throws SQLException
 	 */
-
 	public static void customerSearchEngine(Scanner input) throws SQLException {
 
 		boolean running = true;
@@ -340,9 +322,8 @@ public class AdminApplication {
 	}
 
 	/**
-	 * Prikaz svih korisnika
-	 * 
-	 * @author amer
+	 * Displaying all users. 
+	 * @author Nemanja
 	 * @throws SQLException
 	 */
 	public static void displayAllCustomers() throws SQLException {
@@ -353,12 +334,6 @@ public class AdminApplication {
 		}
 	}
 
-	/**
-	 * Brisanje korisnika upisom ID-a userId
-	 * 
-	 * @author amer
-	 * @param input
-	 */
 	public static void deleteCustomer(Scanner input) {
 		boolean on = true;
 		int id = 0;
@@ -376,8 +351,8 @@ public class AdminApplication {
 	}
 
 	/**
-	 * Ispis racuna za naplatiti.
-	 * 
+	 * Printing bill to pay.
+	 * @author Nemanja 
 	 * @param input
 	 */
 	public static void bill(Scanner input) {
@@ -392,12 +367,10 @@ public class AdminApplication {
 					if (HotelStatusValidation.isUserIdExists(id)) {
 						on = false;
 						hotelStatusDAOImpl.printBill(id);
-
 					} else {
 						System.out.println("Korisnik sa unesenim ID se ne nalazi u bazi, pokusajte ponovo.");
 						input.nextLine();
 					}
-
 				}
 				running = false;
 			} catch (Exception e) {
@@ -405,13 +378,11 @@ public class AdminApplication {
 				input.nextLine();
 			}
 		}
-
 	}
 
 	/**
-	 * Funkcije administratorskog menija
-	 * 
-	 * @author amer
+	 * Method for printing administrator functions menu.
+	 * @author Nemanja
 	 * @param input
 	 * @throws SQLException
 	 */
@@ -427,7 +398,6 @@ public class AdminApplication {
 					System.out.println("\nUpisite opciju: ");
 					option = input.nextInt();
 					switch (option) {
-
 					case 1:
 						userDAOImpl.addCustomer(addCustomer(input));
 						break;
