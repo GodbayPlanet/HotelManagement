@@ -12,20 +12,16 @@ public class LoginValidation {
 	public static Connection connection = DBConnection.getConnectionToDB();
 
 	/**
-	 * Validacija korisnickog imena i pasvorda
-	 * 
-	 * @author amer
+	 * Validation for user name and password.
+	 * @author Nemanja
 	 * @param userName
 	 * @param password
 	 * @return
 	 * @throws SQLException
 	 */
 	public static boolean isValidUserLogin(String userName, String password) throws SQLException {
-		
-		//Case sensitive
-		PreparedStatement statement = connection.prepareStatement(
-				"SELECT * FROM Users WHERE BINARY Username = '" + userName + "'" + "AND BINARY Password ='" + password + "'");
-
+		PreparedStatement statement = connection.prepareStatement("SELECT * FROM Users WHERE BINARY Username = '"
+				+ userName + "'" + "AND BINARY Password ='" + password + "'");
 		ResultSet result = statement.executeQuery();
 		if (!result.isBeforeFirst()) {
 			return false;
@@ -34,19 +30,16 @@ public class LoginValidation {
 	}
 
 	/**
-	 * Validacija admin imena i pasvorda
-	 * 
-	 * @author amer
+	 * Validation for admin name and pasword.
+	 * @author Nemanja
 	 * @param name
 	 * @param password
 	 * @return
 	 * @throws SQLException
 	 */
 	public static boolean isValidAdminLogin(String name, String password) throws SQLException {
-		//Case sensitive
 		PreparedStatement statement = connection.prepareStatement(
 				"SELECT * FROM Admin WHERE BINARY Name = '" + name + "'" + "AND BINARY Password ='" + password + "'");
-
 		ResultSet result = statement.executeQuery();
 		if (!result.isBeforeFirst()) {
 			return false;

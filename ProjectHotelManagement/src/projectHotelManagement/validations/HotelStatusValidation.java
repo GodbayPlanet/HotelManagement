@@ -24,7 +24,6 @@ public class HotelStatusValidation {
 
 	/**
 	 * Returns true if userId exist in database.
-	 * 
 	 * @author Nemanja
 	 * @param userId
 	 * @return
@@ -32,17 +31,12 @@ public class HotelStatusValidation {
 	 */
 	public static boolean isUserIdExists(int userId) {
 		User customer = cust.getCustomerByID(userId);
-
-		if (customer != null)
-			return true;
-		else
-			return false;
+		return customer != null ? true : false;
 	}
 
 	/**
 	 * Returns true if userName exist in database.
-	 * 
-	 * @author amer
+	 * @author Nemanja
 	 * @param userId
 	 * @return
 	 * @throws SQLException
@@ -50,45 +44,30 @@ public class HotelStatusValidation {
 
 	public static boolean isUserNameExists(String userName) throws SQLException {
 		User customer = cust.getCustomerByUserName(userName);
-
-		if (customer != null)
-			return true;
-		else
-			return false;
+		return customer != null ? true : false;
 	}
 	
 	/**
 	 * Returns true if userName exist in database.
-	 * 
-	 * @author amer
+	 * @author Nemanja
 	 * @param userId
 	 * @return
 	 * @throws SQLException
 	 */
-
 	public static boolean isUserFirstNameExists(String userName) throws SQLException {
 		User customer = cust.getCustomerByName(userName);
-
-		if (customer != null)
-			return true;
-		else
-			return false;
+		return customer != null ? true : false;
 	}
 
 	/**
 	 * Returns true is roomId exist in database.
-	 * 
 	 * @author Nemanja
 	 * @param roomId
 	 * @return
 	 */
 	public static boolean isRoomExists(int roomId) {
 		Room room = roomImpl.getRoomById(roomId);
-
-		if (room != null)
-			return true;
-		else
-			return false;
+		return room != null ? true : false;
 	}
 
 	/**
@@ -100,11 +79,7 @@ public class HotelStatusValidation {
 	 */
 	public static boolean isRoomFree(int roomId) {
 		Room room = roomImpl.getRoomById(roomId);
-
-		if (room != null && room.isReserved() == 1)
-			return true;
-		else
-			return false;
+		return (room != null && room.isReserved() == 1) ? true : false;
 	}
 	
 	/**
@@ -115,7 +90,6 @@ public class HotelStatusValidation {
 	 */
 	public static boolean isRoomFreeFromHotelStatus(int roomId) throws SQLException {
 		ResultSet result = hotelStatusImpl.getAllRooms();
-		
 		while(result.next()) {
 			if(result.getInt("RoomID") == roomId)
 				return false;
@@ -125,8 +99,8 @@ public class HotelStatusValidation {
 	
 	/**
 	 * Returns true if there is no duplicate rows in table hotelstatus.
+	 * @author Nemanja
 	 * @param userId
-	 * @return
 	 * @throws SQLException
 	 */
 	public static boolean isFreeToBook(int userId) throws SQLException {
@@ -143,7 +117,6 @@ public class HotelStatusValidation {
 
 	/**
 	 * Returns true if additional service exists and false if not.
-	 * 
 	 * @author Nemanja
 	 * @param serviceId
 	 * @return
