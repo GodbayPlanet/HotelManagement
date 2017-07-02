@@ -2,10 +2,12 @@ package projectHotelManagement.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 
 public class DBConnection {
 
+	private static Connection myConnection;
 	/**
 	 * Returns connection to data base.
 	 * @author Nemanja
@@ -15,7 +17,7 @@ public class DBConnection {
 		Properties properties = getProperties();
 
 		try {
-			Connection myConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotelmanagamenttest",
+			myConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotelmanagamenttest",
 					properties);
 			return myConnection;
 		} catch (Exception ex) {
@@ -37,4 +39,5 @@ public class DBConnection {
 
 		return properties;
 	}
+	
 }
