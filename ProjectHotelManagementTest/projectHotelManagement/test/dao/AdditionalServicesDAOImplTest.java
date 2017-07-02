@@ -16,6 +16,7 @@ import projectHotelManagement.data.AdditionalServices;
 
 public class AdditionalServicesDAOImplTest {
 	
+	private static final int SERVICES_ID = 1;
 	@Mock
 	private AdditionalServicesDAO additionalServices;
 	@Mock
@@ -30,20 +31,20 @@ public class AdditionalServicesDAOImplTest {
 	
 	@Test
 	public void testFindByIdDao() {
-		additionalServices.findById(1);
-		Mockito.verify(additionalServices).findById(1);
+		additionalServices.findById(SERVICES_ID);
+		Mockito.verify(additionalServices).findById(SERVICES_ID);
 	}
 	
 	@Test
 	public void testFindByIdDaoImpl() {
-		Mockito.when(additionalServices.findById(1)).thenReturn(createAdditionalServices());
-		AdditionalServices gym = additionalServices.findById(1);
+		Mockito.when(additionalServices.findById(SERVICES_ID)).thenReturn(createAdditionalServices());
+		AdditionalServices gym = additionalServices.findById(SERVICES_ID);
 		Assert.assertEquals(10, gym.getGymPrice());
 	}
 
 	private AdditionalServices createAdditionalServices() {
 		AdditionalServices additionalService = new AdditionalServices();
-		additionalService.setServicesId(1);
+		additionalService.setServicesId(SERVICES_ID);
 		return additionalService;
 	}
 }
