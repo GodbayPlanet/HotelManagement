@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.junit.After;
@@ -66,8 +67,21 @@ public class HotelStatusDAOImplTest {
 		Mockito.when(rs.getInt(SERVICE_ID)).thenReturn(hotel.getServiceId());
 		Mockito.when(rs.getInt(ROOM_ID)).thenReturn(hotel.getRoomId());
 		Mockito.when(rs.getDate("checkIn")).thenReturn(new java.sql.Date(hotel.getCheckIn().getTime()));
-		
 	}
+	
+	@Test
+	public void testBookAdditionalServices() throws SQLException {
+		ArrayList<Integer> selectedServices = new ArrayList<>();
+		selectedServices.add(SERVICE_ID);
+		
+		assertNotNull(selectedServices);
+		assertEquals(1, selectedServices.size());
+		
+		hotelStatus.bookAdditionalServices(USER_ID, selectedServices);
+		Mockito.verify(hotelStatus, Mockito.times(1)).bookAdditionalServices(USER_ID, selectedServices);
+	}
+	
+	
 
 	@After
 	public void tearDown() {
