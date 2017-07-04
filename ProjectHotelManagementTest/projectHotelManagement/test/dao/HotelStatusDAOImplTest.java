@@ -37,10 +37,14 @@ public class HotelStatusDAOImplTest {
 	@Mock
 	private HotelStatusDAOImpl hotelStatus;
 
+	@Mock
+	ResultSet rs;
+	
 	@Before
 	public void setUp() {
 		connection = DBConnection.getConnectionToDB();
 		hotelStatus = new HotelStatusDAOImpl(connection);
+		rs = Mockito.mock(ResultSet.class);
 		MockitoAnnotations.initMocks(this);
 	}
 
@@ -62,7 +66,6 @@ public class HotelStatusDAOImplTest {
 		assertEquals("Pero", user.getFirstName());
 		assertEquals("Jednosobna", room.getRoomType());
 
-		ResultSet rs = Mockito.mock(ResultSet.class);
 		Mockito.when(rs.getInt(USER_ID)).thenReturn(hotel.getUserId());
 		Mockito.when(rs.getInt(SERVICE_ID)).thenReturn(hotel.getServiceId());
 		Mockito.when(rs.getInt(ROOM_ID)).thenReturn(hotel.getRoomId());
@@ -104,6 +107,11 @@ public class HotelStatusDAOImplTest {
 		assertEquals(160, totalForRoomServices, DELTA);
 		assertNotNull(apartment);
 		assertEquals(ROOM_ID, apartment.getRoomNumber());
+	}
+	
+	@Test
+	public void testGetLastRoomBooked() throws SQLException {
+		Mockito.when(hotelStatus.getLastRoomBooked(rs)).thenReturn(ROOM_ID);
 	}
 
 	@After
