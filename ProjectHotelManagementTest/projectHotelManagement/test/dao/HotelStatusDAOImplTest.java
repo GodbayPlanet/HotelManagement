@@ -52,7 +52,7 @@ public class HotelStatusDAOImplTest {
 	public void testCustomerRoomRegistration() throws SQLException {
 
 		User user = new User(USER_ID, "Stagod", "Pero", "Peric", "sss", "M", USER_AGE, IS_LOGGED);
-		Room room = new Room(ROOM_ID, "Jednosobna", ROOM_PRICE);
+		Room room = new Room(ROOM_ID, "SingleRoom", ROOM_PRICE);
 		AdditionalServices additionalService = new AdditionalServices();
 		additionalService.setServicesId(SERVICE_ID);
 
@@ -64,7 +64,7 @@ public class HotelStatusDAOImplTest {
 		assertNotNull(additionalService);
 		assertNotNull(hotel);
 		assertEquals("Pero", user.getFirstName());
-		assertEquals("Jednosobna", room.getRoomType());
+		assertEquals("SingleRoom", room.getRoomType());
 
 		Mockito.when(rs.getInt(USER_ID)).thenReturn(hotel.getUserId());
 		Mockito.when(rs.getInt(SERVICE_ID)).thenReturn(hotel.getServiceId());
