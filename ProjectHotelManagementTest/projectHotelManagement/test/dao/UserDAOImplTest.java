@@ -17,7 +17,6 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import projectHotelManagement.connection.DBConnection;
-import projectHotelManagement.dao.UserDAO;
 import projectHotelManagement.dao.UserDAOImpl;
 import projectHotelManagement.data.User;
 
@@ -30,14 +29,14 @@ public class UserDAOImplTest {
 	@Mock
 	private Connection mockConnection;
 	@Mock
-	private UserDAO mockUserDAO;
+	private UserDAOImpl mockUserDAOImpl;
 	@Mock
 	ResultSet rs;
 
 	@Before
 	public void setUp() throws SQLException {
 		mockConnection = DBConnection.getConnectionToDB();
-		mockUserDAO = new UserDAOImpl(mockConnection);
+		mockUserDAOImpl = new UserDAOImpl(mockConnection);
 		rs = Mockito.mock(ResultSet.class);
 		MockitoAnnotations.initMocks(this);
 	}
@@ -53,38 +52,42 @@ public class UserDAOImplTest {
 
 	@Test
 	public void testGetCustomerByName() throws SQLException {
-		Mockito.when(mockUserDAO.getCustomerByName("Pero")).thenReturn(createUser());
-		mockUserDAO.getCustomerByName("Pero");
-		Mockito.verify(mockUserDAO).getCustomerByName("Pero");
+		Mockito.when(mockUserDAOImpl.getCustomerByName("Pero")).thenReturn(createUser());
+		mockUserDAOImpl.getCustomerByName("Pero");
+		Mockito.verify(mockUserDAOImpl).getCustomerByName("Pero");
 	}
 	
 	@Test
 	public void testGetCustomerById() throws SQLException {
-		Mockito.when(mockUserDAO.getCustomerByID(USER_ID)).thenReturn(createUser());
-		mockUserDAO.getCustomerByID(USER_ID);
-		Mockito.verify(mockUserDAO).getCustomerByID(USER_ID);
+		Mockito.when(mockUserDAOImpl.getCustomerByID(USER_ID)).thenReturn(createUser());
+		mockUserDAOImpl.getCustomerByID(USER_ID);
+		Mockito.verify(mockUserDAOImpl).getCustomerByID(USER_ID);
 	}
 	
 	@Test
 	public void testGetCustomerByUserName() throws SQLException {
-		Mockito.when(mockUserDAO.getCustomerByUserName("Perica")).thenReturn(createUser());
-		mockUserDAO.getCustomerByUserName("Perica");
-		Mockito.verify(mockUserDAO).getCustomerByUserName("Perica");
+		Mockito.when(mockUserDAOImpl.getCustomerByUserName("Perica")).thenReturn(createUser());
+		mockUserDAOImpl.getCustomerByUserName("Perica");
+		Mockito.verify(mockUserDAOImpl).getCustomerByUserName("Perica");
 	}
 	
 	@Test
 	public void testGetCustomer() throws SQLException {
-		UserDAOImpl userDAOImpl = Mockito.mock(UserDAOImpl.class);
-		Mockito.when(userDAOImpl.getCustomer(rs)).thenReturn(createUser());
+		Mockito.when(mockUserDAOImpl.getCustomer(rs)).thenReturn(createUser());
 	}
 	
 	@Test
 	public void testGetAllCustomers() throws SQLException {
 		Set<User> customers = new LinkedHashSet<>();
 		customers.add(createUser());
-		Mockito.when(mockUserDAO.getAllCustomers()).thenReturn(customers);
+		Mockito.when(mockUserDAOImpl.getAllCustomers()).thenReturn(customers);
 		assertNotNull(customers);
 		assertEquals(1, customers.size());
+	}
+	
+	@Test
+	public void testGetSpecificRow() {
+		Mockito.when(mockUserDAOImpl.getSpecificRow(USER_ID)).thenReturn(rs);
 	}
 	
 	private User createUser() {
