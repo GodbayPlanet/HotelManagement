@@ -52,6 +52,13 @@ public class UserDAOImplTest {
 		Mockito.verify(mockUserDAO).getCustomerByName("Pero");
 	}
 	
+	@Test
+	public void testGetCustomerById() throws SQLException {
+		Mockito.when(mockUserDAO.getCustomerByID(USER_ID)).thenReturn(createUser());
+		mockUserDAO.getCustomerByID(USER_ID);
+		Mockito.verify(mockUserDAO).getCustomerByID(USER_ID);
+	}
+	
 	private User createUser() {
 		return new User(USER_ID, "Perica", "Pero", "Peric", "pass", "M", USER_AGE, IS_LOGGED);
 	}
