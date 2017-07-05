@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.junit.After;
@@ -28,11 +29,14 @@ public class UserDAOImplTest {
 	private Connection mockConnection;
 	@Mock
 	private UserDAO mockUserDAO;
+	@Mock
+	ResultSet rs;
 
 	@Before
 	public void setUp() throws SQLException {
 		mockConnection = DBConnection.getConnectionToDB();
 		mockUserDAO = new UserDAOImpl(mockConnection);
+		rs = Mockito.mock(ResultSet.class);
 		MockitoAnnotations.initMocks(this);
 	}
 
@@ -64,6 +68,12 @@ public class UserDAOImplTest {
 		Mockito.when(mockUserDAO.getCustomerByUserName("Perica")).thenReturn(createUser());
 		mockUserDAO.getCustomerByUserName("Perica");
 		Mockito.verify(mockUserDAO).getCustomerByUserName("Perica");
+	}
+	
+	@Test
+	public void testGetCustomer() throws SQLException {
+		UserDAOImpl userDAOImpl = Mockito.mock(UserDAOImpl.class);
+		Mockito.when(userDAOImpl.getCustomer(rs)).thenReturn(createUser());
 	}
 	
 	private User createUser() {
