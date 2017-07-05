@@ -220,11 +220,10 @@ public class UserDAOImpl implements UserDAO {
 	 */
 	public void loggedOffAllUsers() throws SQLException {
 		Set<User> customers = getAllCustomers();
-
-		for(User c : customers) {
-			if(c.getIsLogged() == 1) 
-				updateColumnIsLogged(c.getPersonalIdNumber(), OFFLINE);
-		}
+		customers.forEach(customer -> {
+			if(customer.getIsLogged() == 1)
+				updateColumnIsLogged(customer.getPersonalIdNumber(), OFFLINE);
+		});
 	}
 
 	/**
