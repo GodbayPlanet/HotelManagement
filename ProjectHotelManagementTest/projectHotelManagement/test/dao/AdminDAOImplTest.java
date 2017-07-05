@@ -3,6 +3,7 @@ package projectHotelManagement.test.dao;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,17 +17,19 @@ import projectHotelManagement.dao.AdminDAOImpl;
 import projectHotelManagement.data.Admin;
 
 public class AdminDAOImplTest {
-	
-	@Mock private Connection connection;
-	@Mock private AdminDAO admin;
-	
+
+	@Mock
+	private Connection connection;
+	@Mock
+	private AdminDAO admin;
+
 	@Before
 	public void setUp() {
 		connection = DBConnection.getConnectionToDB();
 		admin = new AdminDAOImpl(connection);
 		MockitoAnnotations.initMocks(this);
 	}
-	
+
 	@Test
 	public void testGetAdminByName() throws SQLException {
 		Mockito.when(admin.getAdmin("Nemanja")).thenReturn(new Admin(1, "Nemanja", "password"));
@@ -34,5 +37,14 @@ public class AdminDAOImplTest {
 		Assert.assertEquals("Nemanja", administrator.getAdminName());
 		Assert.assertNotNull(administrator);
 	}
-	
+
+	@After
+	public void tearDown() {
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }
