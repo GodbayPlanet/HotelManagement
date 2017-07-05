@@ -6,6 +6,8 @@ import static org.junit.Assert.assertNotNull;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import org.junit.After;
 import org.junit.Before;
@@ -74,6 +76,15 @@ public class UserDAOImplTest {
 	public void testGetCustomer() throws SQLException {
 		UserDAOImpl userDAOImpl = Mockito.mock(UserDAOImpl.class);
 		Mockito.when(userDAOImpl.getCustomer(rs)).thenReturn(createUser());
+	}
+	
+	@Test
+	public void testGetAllCustomers() throws SQLException {
+		Set<User> customers = new LinkedHashSet<>();
+		customers.add(createUser());
+		Mockito.when(mockUserDAO.getAllCustomers()).thenReturn(customers);
+		assertNotNull(customers);
+		assertEquals(1, customers.size());
 	}
 	
 	private User createUser() {
