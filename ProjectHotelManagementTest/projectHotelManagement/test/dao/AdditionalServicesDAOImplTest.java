@@ -1,7 +1,9 @@
 package projectHotelManagement.test.dao;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -46,5 +48,14 @@ public class AdditionalServicesDAOImplTest {
 		AdditionalServices additionalService = new AdditionalServices();
 		additionalService.setServicesId(SERVICES_ID);
 		return additionalService;
+	}
+	
+	@After
+	public void tearDown() {
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
