@@ -28,7 +28,6 @@ public class HotelStatusValidationTest {
 	private Connection mockConnection;
 	@Mock
 	private UserDAOImpl mockCustomer;
-	private HotelStatusValidation validation;
 	private User user = new User(USER_ID, "Perica", "Pero", "Peric", "pass", "M", USER_AGE, OFF_LINE);
 	private Room room = new Room(ROOM_ID, "SingleRoom", ROOM_PRICE);
 
@@ -36,7 +35,6 @@ public class HotelStatusValidationTest {
 	public void setUp() {
 		mockConnection = DBConnection.getConnectionToDB();
 		mockCustomer = Mockito.mock(UserDAOImpl.class);
-		validation = Mockito.spy(new HotelStatusValidation());
 		MockitoAnnotations.initMocks(this);
 	}
 
@@ -60,7 +58,10 @@ public class HotelStatusValidationTest {
 		assertTrue(HotelStatusValidation.isRoomExists(room.getRoomNumber()));
 	}
 	
-	
+	@Test
+	public void testIsAdditionalServiceExist() {
+		
+	}
 	
 	@After
 	public void tearDown() {
