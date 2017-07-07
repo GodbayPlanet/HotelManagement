@@ -9,11 +9,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import projectHotelManagement.connection.DBConnection;
-import projectHotelManagement.dao.UserDAOImpl;
 import projectHotelManagement.data.AdditionalServices;
 import projectHotelManagement.data.Room;
 import projectHotelManagement.data.User;
