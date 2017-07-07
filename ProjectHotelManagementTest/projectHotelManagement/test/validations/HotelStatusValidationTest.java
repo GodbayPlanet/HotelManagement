@@ -1,5 +1,7 @@
 package projectHotelManagement.test.validations;
 
+import static org.junit.Assert.assertTrue;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -9,16 +11,17 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import static org.junit.Assert.*;
 
 import projectHotelManagement.connection.DBConnection;
 import projectHotelManagement.dao.UserDAOImpl;
+import projectHotelManagement.data.AdditionalServices;
 import projectHotelManagement.data.Room;
 import projectHotelManagement.data.User;
 import projectHotelManagement.validations.HotelStatusValidation;
 
 public class HotelStatusValidationTest {
 
+	private static final int ADDITIONAL_SERVICE_ID = 1;
 	private static final int OFF_LINE = 0;
 	private static final int USER_AGE = 26;
 	private static final int ROOM_PRICE = 50;
@@ -30,6 +33,7 @@ public class HotelStatusValidationTest {
 	private UserDAOImpl mockCustomer;
 	private User user = new User(USER_ID, "Perica", "Pero", "Peric", "pass", "M", USER_AGE, OFF_LINE);
 	private Room room = new Room(ROOM_ID, "SingleRoom", ROOM_PRICE);
+	private AdditionalServices additionalService = new AdditionalServices();
 
 	@Before
 	public void setUp() {
@@ -60,7 +64,8 @@ public class HotelStatusValidationTest {
 	
 	@Test
 	public void testIsAdditionalServiceExist() {
-		
+		additionalService.setServicesId(ADDITIONAL_SERVICE_ID);
+		assertTrue(HotelStatusValidation.isAdditionalServiceExist(additionalService.getServicesId()));
 	}
 	
 	@After
