@@ -27,7 +27,6 @@ public class HotelStatusValidationTest {
 	private static final int USER_ID = 1;
 	@Mock
 	private Connection mockConnection;
-	@Mock
 	private User user = new User(USER_ID, "Perica", "Pero", "Peric", "pass", "M", USER_AGE, OFF_LINE);
 	private Room room = new Room(ROOM_ID, "SingleRoom", ROOM_PRICE);
 	private AdditionalServices additionalService = new AdditionalServices();
