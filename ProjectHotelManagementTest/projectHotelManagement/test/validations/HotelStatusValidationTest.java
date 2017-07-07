@@ -9,9 +9,11 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import static org.junit.Assert.*;
 
 import projectHotelManagement.connection.DBConnection;
 import projectHotelManagement.dao.UserDAOImpl;
+import projectHotelManagement.data.User;
 import projectHotelManagement.validations.HotelStatusValidation;
 
 public class HotelStatusValidationTest {
@@ -22,6 +24,7 @@ public class HotelStatusValidationTest {
 	@Mock
 	private UserDAOImpl mockCustomer;
 	private HotelStatusValidation validation;
+	private User user = new User(USER_ID, "Perica", "Pero", "Peric", "pass", "M", 26, 0);
 
 	@Before
 	public void setUp() {
@@ -33,14 +36,17 @@ public class HotelStatusValidationTest {
 
 	@Test
 	public void testIsUserIdExists() {
-		Mockito.verify(validation);
-		HotelStatusValidation.isUserIdExists(USER_ID);
+		assertTrue(HotelStatusValidation.isUserIdExists(USER_ID));
 	}
 
 	@Test
 	public void testIsUserNameExists() throws SQLException {
-		Mockito.verify(validation);
-		HotelStatusValidation.isUserNameExists("Perica");
+		assertTrue(HotelStatusValidation.isUserNameExists("Perica"));
+	}
+	
+	@Test
+	public void testIsUserFirstNameExists() throws SQLException {
+		assertTrue(HotelStatusValidation.isUserFirstNameExists("Pero"));
 	}
 
 	@After
