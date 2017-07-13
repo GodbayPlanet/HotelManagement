@@ -2,9 +2,13 @@
 <classpath>
 	<classpathentry kind="src" path="ProjectHotelManagement/src"/>
 	<classpathentry kind="src" path="ProjectHotelManagementTest"/>
+	<classpathentry kind="src" path="projectHotelManagementDBUnitTest"/>
 	<classpathentry kind="lib" path="ProjectHotelManagement/Libs/mysql-connector-java-5.1.21-bin.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/Users/Nemanja/Desktop/MySQL/JARS/mockito-all-1.9.5.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/Nemanja/Desktop/JARS/dbunit.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nemanja/Desktop/JARS/dbunit-2.4.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nemanja/Desktop/JARS/slf4j.jar"/>
 	<classpathentry kind="output" path="ProjectHotelManagement/bin"/>
 </classpath>

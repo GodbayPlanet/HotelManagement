@@ -6,6 +6,7 @@ import java.util.Properties;
 
 public class DBConnection {
 
+	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/hotelmanagamenttest";
 	private static Connection myConnection;
 	
 	/**
@@ -17,8 +18,7 @@ public class DBConnection {
 		Properties properties = getProperties();
 
 		try {
-			myConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotelmanagamenttest",
-					properties);
+			myConnection = DriverManager.getConnection(JDBC_URL, properties);
 			return myConnection;
 		} catch (Exception ex) {
 			ex.printStackTrace();
