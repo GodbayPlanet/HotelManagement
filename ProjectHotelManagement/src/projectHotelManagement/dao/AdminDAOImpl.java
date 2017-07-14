@@ -29,15 +29,17 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public Admin getAdmin(String adminName) throws SQLException {
 		try {
-			query = "select Name from Admin where Name like '" + adminName + "'";
+			query = "select * from Admin where Name like '" + adminName + "'";
 			statement = (PreparedStatement) connection.prepareStatement(query);
 			result = statement.executeQuery();
 			
 			if(result.next()) {
-				return new Admin(result.getInt("ID"), result.getString("Name"), result.getString("Password"));
+				int id = result.getInt("ID");
+				return new Admin(id, result.getString("Name"), result.getString("Password"));
 			}
 		}
 		catch(SQLException ex) {
+			ex.printStackTrace();
 			System.out.println(ex.toString());
 		}
 		return null;
