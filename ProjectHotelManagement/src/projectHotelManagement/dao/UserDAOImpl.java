@@ -70,7 +70,7 @@ public class UserDAOImpl implements UserDAO {
 			query = "select * from Users where FirstName like '" + firstName + "'";
 			statement = (PreparedStatement) connection.prepareStatement(query);
 			result = statement.executeQuery();
-
+			
 			return getCustomer(result);
 		}
 		catch (Exception ex) {
