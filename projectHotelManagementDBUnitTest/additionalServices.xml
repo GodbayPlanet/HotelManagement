@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<services ID="1" Name="Restaurant" Price="20"/>
+	<services ID="2" Name="Sauna" Price="10"/>
+	<services ID="3" Name="Swimming Pool" Price="10"/>
+	<services ID="4" Name="Gym" Price="10"/>
+	<services ID="5" Name="Cinema" Price="10"/>
+</dataset>
