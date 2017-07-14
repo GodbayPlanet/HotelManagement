@@ -31,6 +31,7 @@ public class TestAdminDaoImpl {
 	public void testGetAdminByName() throws SQLException {
 		Admin admin = adminDao.getAdmin("Admin");
 		assertNotNull(admin);
+		assertEquals("Admin", admin.getAdminName());
 	}
 	
 	@Test
