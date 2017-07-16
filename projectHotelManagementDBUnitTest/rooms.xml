@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<room RoomNumber="1" IsFree="1" RoomType="Single Room" RoomPrice="20"/>
+	<room RoomNumber="2" IsFree="0" RoomType="Double Room" RoomPrice="40"/>
+	<room RoomNumber="3" IsFree="0" RoomType="Double Room" RoomPrice="40"/>
+	<room RoomNumber="4" IsFree="0" RoomType="Single Room" RoomPrice="20"/>
+	<room RoomNumber="5" IsFree="0" RoomType="Apartment" RoomPrice="60"/>
+	<room RoomNumber="6" IsFree="0" RoomType="Apartment" RoomPrice="60"/>
+	<room RoomNumber="7" IsFree="1" RoomType="Apartment" RoomPrice="60"/>
+	<room RoomNumber="8" IsFree="1" RoomType="Apartment" RoomPrice="60"/>
+	<room RoomNumber="9" IsFree="1" RoomType="Apartment" RoomPrice="60"/>
+	<room RoomNumber="10" IsFree="1" RoomType="Single Room" RoomPrice="20"/>
+	<room RoomNumber="11" IsFree="0" RoomType="Single Room" RoomPrice="20"/>
+	<room RoomNumber="12" IsFree="1" RoomType="Single Room" RoomPrice="20"/>
+	<room RoomNumber="13" IsFree="1" RoomType="Double Room" RoomPrice="40"/>
+	<room RoomNumber="14" IsFree="0" RoomType="Double Room" RoomPrice="40"/>
+	<room RoomNumber="15" IsFree="1" RoomType="Double Room" RoomPrice="40"/>
+</dataset>
