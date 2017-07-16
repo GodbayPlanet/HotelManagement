@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<hotelstatus UserID="1" ServiceID="0" StartDate="2017-04-18" RoomID="1" EndDate="2017-04-23"/>
+	<hotelstatus UserID="1" ServiceID="0" StartDate="2017-04-24" RoomID="11" EndDate="2017-04-24"/>
+	<hotelstatus UserID="2" ServiceID="0" StartDate="2017-04-18" RoomID="6" EndDate="2017-04-19"/>
+	<hotelstatus UserID="2" ServiceID="0" StartDate="2017-04-19" RoomID="8" EndDate="2017-04-20"/>
+	<hotelstatus UserID="12" ServiceID="0" StartDate="2017-04-24" RoomID="13" EndDate="2017-04-24"/>
+</dataset>
