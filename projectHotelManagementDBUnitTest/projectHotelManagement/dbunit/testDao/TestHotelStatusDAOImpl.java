@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.dbunit.dataset.DataSetException;
@@ -18,6 +19,8 @@ import projectHotelManagement.dao.HotelStatusDAOImpl;
 
 public class TestHotelStatusDAOImpl {
 
+	private static final int EXPECTED_AMOUNT_FOR_ROOM = 40;
+	private static final int EXPECTED_AMOUNT_FOR_SERVICES = 20;
 	private static final int SERVICE_ID = 1;
 	private static final int CUSTOMER_ID = 3;
 	private static final int ROOM_ID = 2;
@@ -67,13 +70,26 @@ public class TestHotelStatusDAOImpl {
 		userRoom.next();
 		assertEquals(ROOM_ID, userRoom.getInt("RoomNumber"));
 	}
-
+	
 	@Test
 	public void testLoadedData() throws DataSetException {
 		assertNotNull(loadedDataSet);
 		int rowCount = loadedDataSet.getTable(HOTEL_STATUS_TABLE_NAME).getRowCount();
 		assertEquals(NUMER_OF_ROWS, rowCount);
 	}
+	
+	@Test
+	public void testGetCurrentTotalForServices() throws SQLException {
+		int totalForServices = hotelStatusDao.getCurrentTotalForServices(CUSTOMER_ID);
+		assertEquals(EXPECTED_AMOUNT_FOR_SERVICES, totalForServices);
+	}
+	
+	@Test
+	public void getCurrentTotalForRoom() throws SQLException {
+		int totalForRoom = hotelStatusDao.getCurrentTotalForRoom(CUSTOMER_ID);
+		assertEquals(EXPECTED_AMOUNT_FOR_ROOM, totalForRoom);
+	}
+	
 	
 //	@After
 //	public void tearDown() throws Exception {
