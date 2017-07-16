@@ -59,6 +59,14 @@ public class TestHotelStatusDAOImpl {
 		assertEquals(20, usersAdditionalServices.getInt("Price"));
 
 	}
+	
+	@Test
+	public void testGetUserRoom() throws SQLException {
+		ResultSet userRoom = hotelStatusDao.getUserRoom(CUSTOMER_ID);
+		assertNotNull(userRoom);
+		userRoom.next();
+		assertEquals(ROOM_ID, userRoom.getInt("RoomNumber"));
+	}
 
 	@Test
 	public void testLoadedData() throws DataSetException {
@@ -67,8 +75,8 @@ public class TestHotelStatusDAOImpl {
 		assertEquals(NUMER_OF_ROWS, rowCount);
 	}
 	
-	@After
-	public void tearDown() throws Exception {
-		testDao.setUpDatabase();
-	}
+//	@After
+//	public void tearDown() throws Exception {
+//		testDao.setUpDatabase();
+//	}
 }
